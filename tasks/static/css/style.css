@@ -24,6 +24,11 @@
 }
 
 /* ADD BUTTON */
+
+#add-task {
+    text-decoration: none;
+}
+
 .add-div {
     background-color: #3476e2;
     cursor: pointer;
@@ -34,21 +39,22 @@
     margin-right: 25px;
 }
 
-.fas.fa-plus{
+.fas.fa-plus {
     color: #fff;
     margin-right: 10px;
     margin-left: 5px;
 }
 
 /* SEARCH */
-.fas.fa-search{
+.fas.fa-search {
     float: right;
     margin-top: -25px;
     margin-right: 5px;
+    cursor: pointer;
 
 }
 
-.search-div{
+.search-div {
     padding: 0px;
     margin-top: 15px;
     margin-bottom: 15px;
@@ -66,6 +72,10 @@
     padding-left: 0;
 }
 
+a {
+    text-decoration: none;
+}
+
 .task-item {
     list-style: none;
     font-size: 20px;
@@ -74,7 +84,7 @@
     border-bottom: 1px dashed #ccc;
 }
 
-.fas.fa-trash, .fas.fa-edit{
+.fas.fa-trash, .fas.fa-edit {
     cursor: pointer;
     margin: 5px;
     font-size: 20px;
@@ -82,25 +92,57 @@
 }
 
 
-.fas.fa-trash{
+.fas.fa-trash {
     color: red;
 }
 
-.fas.fa-edit{
+.fas.fa-edit {
     color: green;
 }
 
 /* FOTTER */
 
-footer{
+footer {
     background-color: #333;
     height: 300px;
     border-top: 2px solid #202020;
 }
 
-footer p{
+footer p {
     color: #f5f5f5;
     text-align: center;
     position: relative;
     top: 50%;
+}
+/*MESSAGES*/
+
+ul.messages {
+    padding: 0; /*para não quebrar o layout */
+}
+
+ul.messages li {
+    list-style: none;
+}
+
+/* PAGINATION */
+
+.pagination {
+    margin-bottom: 20px;
+}
+
+.step-links {
+    position: relative;
+    margin-left: auto; /*Centralizando o SPAN no centro da div*/
+    margin-right: auto;
+}
+
+.step-links .current {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+/*LOGIN*/
+
+.auth-card {
+    margin-bottom: 30px;
 }

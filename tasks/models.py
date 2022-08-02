@@ -13,7 +13,7 @@ class Task(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     done = models.CharField(max_length=6, choices=STATUS,) #lista os tipos de opções do usuário
-    create_at = models.DateTimeField(auto_now_add=True) #sempre que for criado, o valor de dada vai ser criado no banco
+    created_at = models.DateTimeField(auto_now_add=True) #sempre que for criado, o valor de dada vai ser criado no banco
     updated_at = models.DateTimeField(auto_now=True) #pega a hora da atualização
 
     def __str__(self):

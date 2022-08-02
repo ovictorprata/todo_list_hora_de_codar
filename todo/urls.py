@@ -18,5 +18,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('tasks.urls'))
+    path('', include('tasks.urls')),
+    #django.urls herda todas as views e chama as URLs
+    path('accounts/', include('django.contrib.auth.urls')),
+
 ]

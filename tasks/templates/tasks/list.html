@@ -8,23 +8,75 @@
     
     <div class="offset-1 col-10 list-div"> 
         <h1>Lista de Tarefas</h1>
-        <div class="col-2 add-div">
-            <i class="fas fa-plus"></i> Adicionar tarefa
-        </div>
+        <a href="new-task/" id="add-link">
+            <div class="col-2 add-div">
+                <i class="fas fa-plus"></i> Adicionar tarefa
+            </div>
+        </a>
 
         <div class="col-9 search-div">
-            <input class="form-control" type="text" name="search" id="search" placeholder="Digite o nome da tarefa..."><i class="fas fa-search"></i> 
+            <form method="get" id="search-form">
+                <input class="form-control" type="text" name="search" id="search" placeholder="Digite o nome da tarefa..." value="{{ request.GET.search }}">
+                <i class="fas fa-search" id="search-btn"></i> 
+            </form>
         </div>
+
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %} <!-- para caso tenha mais de uma msg -->
+                     <li {% if message.tags %} 
+                            class="alert alert-{{message.tags}}" 
+                        {% endif %} >{{ message }}</li>   <!-- nesse caso, a tag é a info --> 
+                {% endfor %}
+            </ul>
+        {% endif %}
+
 
         <ul class="task-list">
             {% for task in tasks %}
                 <li class="task-item">
-                    <span><a href="/task/{{ task.id }}"> {{task.title}}</a></span>
-                    <span><i class="fas fa-trash"></i> </span>
-                    <span><i class="fas fa-edit"></i> </span>
+                    <span>
+                        <a href="/task/{{ task.id }}"> {{task.title}}</a>
+                    </span>
+
+                    <a href="delete/{{ task.id }}" class="delete-btn">
+                        <span>
+                            <i class="fas fa-trash"></i> 
+                        </span>
+                    </a>
+
+                    <a href="edit/{{ task.id }}">
+                        <span>
+                            <i class="fas fa-edit"></i>
+                        </span>
+                    </a>
                 </li>
             {% endfor %}
         </ul>
+        <div class="pagination">
+            <span class="step-links">
+                <!-- tasks.has_previous é uma classe que o django pagination já tem! -->
+                {% if tasks.has_previous %}
+                    <a href="?page={{ tasks.previous_page_number }}">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                {% endif %}
+                
+                {% if tasks.paginator.num_pages %}
+                <span class="current">
+                    {{ tasks.number }} de {{ tasks.paginator.num_pages }}
+                </span>
+                {% endif %}
+
+                {% if tasks.has_next %}
+                    <a href="?page={{ tasks.next_page_number }}">
+                        <i class="fas fa-arrow-right"></i>
+                    </a>    
+                {% endif %}
+            </span>
+        </div>
+
+
     </div>
 
 {%endblock%}
