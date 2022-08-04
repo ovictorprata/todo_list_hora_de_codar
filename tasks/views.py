@@ -27,6 +27,7 @@ def NewTask(request):
         if form.is_valid(): #testa se o formulário é válido
             task = form.save(commit=False) #vai começar a salvar a task, mas vai parar a inserção e vai ESPERAR até a gente mandar salvaer
             task.done = 'Undone'
+            task.user = request.user
             task.save()
         return redirect('/')
 
@@ -42,10 +43,10 @@ def TaskList(request):
     search = request.GET.get('search') #o 'search é o name='' do input de busca
 
     if search:
-        tasks = Task.objects.filter(title__icontains=search) #o __icontains ignora o search
+        tasks = Task.objects.filter(title__icontains=search, user = request.user) #o __icontains ignora o search
     else:
 
-        task_list = Task.objects.all().order_by('-created_at') #A VARIÁVEL QUE VAI RETORNAR O QUE VOCÊ QUER PARA O FRONT, o ALL RETORNA TUDO
+        task_list = Task.objects.all().order_by('-created_at').filter(user = request.user) #A VARIÁVEL QUE VAI RETORNAR O QUE VOCÊ QUER PARA O FRONT, o ALL RETORNA TUDO
 
         paginator = Paginator(task_list, 10) #é o número de dados por página que você quer exibir
 

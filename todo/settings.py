@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'tasks',
     'about',
     'crispy_forms',
+    'accounts',
 
 ]
 
